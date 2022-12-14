@@ -1,6 +1,8 @@
 // Get DOM elements
 const cells = document.querySelectorAll('.cell')
 const gameBoard = document.querySelector('.game-board')
+const endingContainer = document.querySelector('.ending-container')
+const winningMessageDOM = document.querySelector('.winning-message')
 
 // Variables & constants
 let gameIsRunning = true
@@ -102,14 +104,18 @@ function checkForVictory() {
  */
 function handleVictory() {
     // Set the winning message
-    if (playerTurn === 'cross') winningMessage = 'Congrats! You won!'
-    else if (playerTurn === 'circle') winningMessage = 'Maybe next time!'
+    if (playerTurn === 'cross') winningMessage = 'The crosses won!'
+    else if (playerTurn === 'circle') winningMessage = 'The circles won!'
+    winningMessageDOM.textContent = winningMessage
 
     // Remove hover effects
     gameBoard.classList.remove('cross', 'circle')
 
     // Set the cursor to not-allowed on every cell
     cells.forEach(cell => cell.style.cursor = 'not-allowed')
+
+    // Show the ending container
+    endingContainer.classList.add('show')
 
     // Remove all event listeners
     gameBoard.replaceWith(gameBoard.cloneNode(true))

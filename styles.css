@@ -1,6 +1,7 @@
 /* Initial settings */
 *, *::before, *::after {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -60,6 +61,11 @@ body {
     width: 10%;
 }
 
+.game-board.cross .cell:not(.cross):not(.circle):hover::before,
+.game-board.cross .cell:not(.cross):not(.circle):hover::after {
+    background-color: rgb(100, 100, 100);
+}
+
 .cell.cross::after,
 .game-board.cross .cell:not(.cross):not(.circle):hover::after {
     transform: translate(-50%, -50%) rotate(-45deg);
@@ -90,6 +96,10 @@ body {
     width: 80%;
 }
 
+.game-board.circle .cell:not(.cross):not(.circle):hover::before {
+    background-color: rgb(80, 80, 80);
+}
+
 .cell.circle::after,
 .game-board.circle .cell:not(.cross):not(.circle):hover::after {
     background-color: #fff;
@@ -100,4 +110,41 @@ body {
 /* Not-allowed cursor on cell hovering */
 .cell.cross, .cell.circle {
     cursor: not-allowed;
+}
+
+.ending-container {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+}
+
+.winning-message {
+    color: #fff;
+    font-size: 46px;
+    margin: 0 0 20px 0;
+}
+
+.restart-button {
+    background-color: dimgrey;
+    border: 1px solid #fff;
+    border-radius: 0.3em;
+    color: #fff;
+    font-size: 28px;
+    padding: 0.2em 0.8em;
+}
+
+.restart-button:hover {
+    cursor: pointer;
+}
+
+.show {
+    display: flex;
 }
