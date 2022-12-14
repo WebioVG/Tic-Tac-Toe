@@ -1,3 +1,4 @@
+/* Initial settings */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -9,6 +10,7 @@ body {
     width: 100vw;
 }
 
+/* Game board */
 .game-board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -21,8 +23,10 @@ body {
     width: calc(100vmin * 0.8);
 }
 
+/* Cell */
 .cell {
     border: 1px solid #000;
+    cursor: pointer;
     position: relative;
 }
 
@@ -42,7 +46,11 @@ body {
     border-bottom: 0;
 }
 
-.cross::after, .cross::before {
+/* Cross */
+.cell.cross::after,
+.cell.cross::before,
+.game-board.cross .cell:not(.cross):not(.circle):hover::before,
+.game-board.cross .cell:not(.cross):not(.circle):hover::after {
     content: '';
     background-color: #000;
     height: 80%;
@@ -52,15 +60,21 @@ body {
     width: 10%;
 }
 
-.cross::after {
+.cell.cross::after,
+.game-board.cross .cell:not(.cross):not(.circle):hover::after {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.cross::before {
+.cell.cross::before,
+.game-board.cross .cell:not(.cross):not(.circle):hover::before {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.circle::before, .circle::after {
+/* Circle */
+.cell.circle::before,
+.cell.circle::after,
+.game-board.circle .cell:not(.cross):not(.circle):hover::before,
+.game-board.circle .cell:not(.cross):not(.circle):hover::after {
     content: '';
     border-radius: 50%;
     left: 50%;
@@ -69,14 +83,21 @@ body {
     top: 50%;
 }
 
-.circle::before {
+.cell.circle::before,
+.game-board.circle .cell:not(.cross):not(.circle):hover::before {
     background-color: #000;
     height: 80%;
     width: 80%;
 }
 
-.circle::after {
+.cell.circle::after,
+.game-board.circle .cell:not(.cross):not(.circle):hover::after {
     background-color: #fff;
     height: 60%;
     width: 60%;
+}
+
+/* Not-allowed cursor on cell hovering */
+.cell.cross, .cell.circle {
+    cursor: not-allowed;
 }
