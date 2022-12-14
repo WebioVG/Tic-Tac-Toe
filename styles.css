@@ -59,3 +59,24 @@ body {
 .cross::before {
     transform: translate(-50%, -50%) rotate(45deg);
 }
+
+.circle::before, .circle::after {
+    content: '';
+    border-radius: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+
+.circle::before {
+    background-color: #000;
+    height: 80%;
+    width: 80%;
+}
+
+.circle::after {
+    background-color: #fff;
+    height: 60%;
+    width: 60%;
+}
