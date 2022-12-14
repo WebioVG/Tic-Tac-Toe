@@ -1,14 +1,15 @@
 // Get DOM elements
-const cells = document.querySelectorAll('.cell')
-const gameBoard = document.querySelector('.game-board')
+let cells = document.querySelectorAll('.cell')
+let gameBoard = document.querySelector('.game-board')
 const endingContainer = document.querySelector('.ending-container')
 const winningMessageDOM = document.querySelector('.winning-message')
+const restartButton = document.querySelector('.restart-button')
 
 // Variables & constants
 let gameIsRunning = true
 let playerTurn = 'cross'
 let winningMessage = ''
-let gameBoardContent = ['', '', '', '', '', '', '', '', '',]
+let gameBoardContent = ['', '', '', '', '', '', '', '', ''] // stores the current state of the game board
 const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -121,4 +122,27 @@ function handleVictory() {
     gameBoard.replaceWith(gameBoard.cloneNode(true))
 
     gameIsRunning = false
+}
+
+restartButton.addEventListener('click', () => resetGame())
+
+function resetGame() {
+    // Get the new game board and cells
+    cells = document.querySelectorAll('.cell')
+    gameBoard = document.querySelector('.game-board')
+
+    // Reset variables
+    gameIsRunning = true
+    playerTurn = 'cross'
+    winningMessage = ''
+    gameBoardContent = ['', '', '', '', '', '', '', '', '']
+
+    // Add event listeners & reset classes
+    cells.forEach((cell) => {
+        cell.classList.remove('cross', 'circle')
+        cell.addEventListener('click', (e) => handleClick(e), { once: true })
+    })
+    gameBoard.classList.remove('circle', 'cross')
+    gameBoard.classList.add('cross')
+    endingContainer.classList.remove('show')
 }
