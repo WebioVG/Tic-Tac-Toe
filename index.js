@@ -137,9 +137,10 @@ function resetGame() {
     winningMessage = ''
     gameBoardContent = ['', '', '', '', '', '', '', '', '']
 
-    // Add event listeners & reset classes
+    // Add event listeners & reset classes/styles
     cells.forEach((cell) => {
         cell.classList.remove('cross', 'circle')
+        cell.style.cursor = ''
         cell.addEventListener('click', (e) => handleClick(e), { once: true })
     })
     gameBoard.classList.remove('circle', 'cross')
