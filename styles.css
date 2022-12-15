@@ -29,6 +29,23 @@ body {
     width: calc(100vmin * 0.8);
 }
 
+.game-board.cross::after, .game-board.circle::after {
+    bottom: -50px;
+    font-size: 28px;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+}
+
+.game-board.cross::after {
+    content: 'X\'s turn!';
+}
+
+.game-board.circle::after {
+    content: 'O\'s turn!';
+}
+
 /* Cell */
 .cell {
     border: 1px solid #000;
