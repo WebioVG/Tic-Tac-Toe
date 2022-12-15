@@ -124,6 +124,7 @@ function handleVictory() {
     gameIsRunning = false
 }
 
+// Add an event listener for the restart button
 restartButton.addEventListener('click', () => resetGame())
 
 function resetGame() {
