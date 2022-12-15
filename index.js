@@ -42,11 +42,9 @@ function handleClick(e) {
     // Remove event listener
     e.target.removeEventListener('click', handleClick)
     
-    // Check for victory
+    // Check for victory or draw
     if (checkForVictory()) handleVictory()
-
-    // Check for draw
-    if(checkForDraw()) handleDraw()
+    else if(checkForDraw()) handleDraw()
 
     // Switch player turn if noone has won
     if (gameIsRunning) handleTurnChange(playerTurn)
