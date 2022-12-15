@@ -43,7 +43,10 @@ function handleClick(e) {
     e.target.removeEventListener('click', handleClick)
     
     // Check for victory
-    if(checkForVictory()) handleVictory()
+    if (checkForVictory()) handleVictory()
+
+    // Check for draw
+    if(checkForDraw()) handleDraw()
 
     // Switch player turn if noone has won
     if (gameIsRunning) handleTurnChange(playerTurn)
@@ -114,6 +117,29 @@ function handleVictory() {
 
     // Set the cursor to not-allowed on every cell
     cells.forEach(cell => cell.style.cursor = 'not-allowed')
+
+    // Show the ending container
+    endingContainer.classList.add('show')
+
+    // Remove all event listeners
+    gameBoard.replaceWith(gameBoard.cloneNode(true))
+
+    gameIsRunning = false
+}
+
+/**
+ * Returns true if all cells are filled.
+ */
+function checkForDraw() {
+    return gameBoardContent.includes('') ? false : true
+}
+
+/**
+ * Stops the game
+ */
+function handleDraw() {
+    // Set the winning message
+    winningMessageDOM.textContent = 'Draw!'
 
     // Show the ending container
     endingContainer.classList.add('show')
